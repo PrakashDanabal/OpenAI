@@ -20,3 +20,5 @@ completion = client.chat.completions.create(
 )
 
 print(completion.choices[0].message)
+# check git commands
+# check2 
