@@ -13,6 +13,8 @@ HEADERS = ({'User-Agent':
 def get_reviews(url):
   # Make a GET request to the website
   response = requests.get(url,headers=HEADERS)
+  data=''
+
 
   # Check if the request was successful (status code 200)
   if response.status_code == 200:
@@ -26,9 +28,11 @@ def get_reviews(url):
     # Extract and print the reviews
     for review in review_elements:
       review_text = review.get_text(strip=True)
-      print(review_text+'\n----------\n')
+      # print(review_text+'\n----------\n')
+      data=data +review_text+'\n----------\n'
   else:
     print(f"Failed to retrieve the page. Status code: {response.status_code}")
+  return data
 
 
 # Replace 'https://example.com' with the actual URL of the website containing reviews
