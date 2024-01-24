@@ -70,3 +70,5 @@ client = OpenAI(api_key=OPENAI_API_KEY)
 #is it woking?
 
 #just to check
+
+#where are you
