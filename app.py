@@ -1,20 +1,37 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 # import main
-
-
+from google.cloud.sql.connector import Connector, IPTypes
+import pytds
+import sqlalchemy
 
 
 app=Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqldb://<db_user>:<db_password>@/<db_name>?unix_socket=/cloudsql/<connection_name>'
-app.config['SQLALCHEMY_DATABASE_URI'] = "mssql://sa:10231993@localhost:1433/BTS??unix_socket=/cloudsql/deploying-wo-201-25818191:us-central1:myflaskapp1" # File-based SQL database
-db = SQLAlchemy(app)
 
+def connect_with_connector() -> sqlalchemy.engine.base.Engine:
 
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
+    connector = Connector(IPTypes.PUBLIC)
+
+    connect_args = {}
+
+    def getconn() -> pytds.Connection:
+        conn = connector.connect(
+            'myflashdb',
+            "pytds",
+            user='sqlserver',
+            password= '10231993',
+            db='flaskTest',
+        )
+        return conn
+
+    pool = sqlalchemy.create_engine(
+        "mssql+pytds://",
+        creator=getconn,
+        # ...
+    )
+    return pool
+
 
 
 @app.route('/')
