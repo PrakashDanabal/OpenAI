@@ -3,7 +3,13 @@ from flask_sqlalchemy import SQLAlchemy
 # import main
 from google.cloud.sql.connector import Connector, IPTypes
 import pytds
-import sqlalchemy as db
+import sqlalchemy
+
+
+# db = SQLAlchemy()
+
+# SQLALCHEMY_DATABASE_URI = "mssql://sadmin:10231993@adding-and-q-281-3662a64f:us-central1:flaskdb/mdata?driver=SQL+Server+Native+Client+11.0" # File-based SQL database
+
 
 # class User(db.Model, UserMixin):
 #     __tablename__ = 'ehind_users'
@@ -22,6 +28,31 @@ import sqlalchemy as db
 #
 #
 app=Flask(__name__)
+
+db_user = 'sadmin'
+db_password = '10231993'
+db_name = 'mdata'
+db_socket_dir = '/cloudsql'
+cloud_sql_connection_name = 'adding-and-q-281-3662a64f:us-central1:flaskdb'
+
+# Configure the SQLAlchemy URI for Google Cloud SQL
+db_uri = f"mssql+pyodbc://{db_user}:{db_password}@localhost:1433/{db_name}?driver=ODBC+Driver+17+for+SQL+Server"
+app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), nullable=False)
+
+db.create_all()
+
+if not User.query.first():
+    sample_user = User(username='Sample User')
+    db.session.add(sample_user)
+    db.session.commit()
+
 # # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqldb://<db_user>:<db_password>@/<db_name>?unix_socket=/cloudsql/<connection_name>'
 # # Copyright 2022 Google LLC
 # #
@@ -111,8 +142,14 @@ app=Flask(__name__)
 @app.route('/')
 def index():
     # data=main.get_reviews('https://www.amazon.in/product-reviews/B077BFH786/&reviewerType=all_reviews/ref=cm_cr_arp_d_viewpnt_rgt?filterByStar=critical&pageNumber=1')
-    data='hello world'
-    return str(data)
+    user = User.query.first()
+
+    if user:
+        username = user.username
+    else:
+        username = 'No user found'
+
+    return username
 
 
 if __name__=='__main__':
