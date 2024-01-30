@@ -36,7 +36,7 @@ db_socket_dir = '/cloudsql'
 cloud_sql_connection_name = 'adding-and-q-281-3662a64f:us-central1:flaskdb'
 
 # Configure the SQLAlchemy URI for Google Cloud SQL
-db_uri = f"mssql+pyodbc://{db_user}:{db_password}@localhost:1433/{db_name}?driver=ODBC+Driver+17+for+SQL+Server"
+db_uri = f"mssql://{db_user}:{db_password}@/{db_name}?unix_socket=/cloudsql/{cloud_sql_connection_name}"
 app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
