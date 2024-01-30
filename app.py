@@ -21,7 +21,7 @@ import sqlalchemy as db
 #     plant_id = db.Column(db.String(4))
 #
 #
-# app=Flask(__name__)
+app=Flask(__name__)
 # # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqldb://<db_user>:<db_password>@/<db_name>?unix_socket=/cloudsql/<connection_name>'
 # # Copyright 2022 Google LLC
 # #
