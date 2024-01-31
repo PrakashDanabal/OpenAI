@@ -7,10 +7,7 @@ INSTANCE_CONNECTION_NAME='adding-and-q-281-4dad58e7:us-central1:flaskdb'
 print(f"Your instance connection name is: {'adding-and-q-281-4dad58e7:us-central1:flaskdb'}")
 DB_USER = "sqlserver"
 # verify password for 'sqlserver' user is set (already set for those that created a Cloud SQL instance within this notebook)
-try:
-  assert sqlserver_pass
-except:
-  sqlserver_pass = input("Please provide the password for your 'sqlserver' database user: ")
+
 DB_PASS = '10231993'
 DB_NAME = "mdata"
 
