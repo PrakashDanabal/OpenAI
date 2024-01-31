@@ -1,21 +1,17 @@
-
 from google.cloud.sql.connector import Connector
 import sqlalchemy
 from sqlalchemy import Column, Float, Integer, String, Table
 
-INSTANCE_CONNECTION_NAME='adding-and-q-281-4dad58e7:us-central1:flaskdb'
-print(f"Your instance connection name is: {'adding-and-q-281-4dad58e7:us-central1:flaskdb'}")
+connector = Connector()
+
+INSTANCE_CONNECTION_NAME = f"adding-and-q-281-3266f7f7:us-central1:flaskdb" # i.e demo-project:us-central1:demo-instance
+print(f"Your instance connection name is: {INSTANCE_CONNECTION_NAME}")
 DB_USER = "sqlserver"
 # verify password for 'sqlserver' user is set (already set for those that created a Cloud SQL instance within this notebook)
 
 DB_PASS = '10231993'
 DB_NAME = "mdata"
 
-
-
-connector = Connector()
-
-# function to return the database connection object
 def getconn():
     conn = connector.connect(
         INSTANCE_CONNECTION_NAME,
@@ -67,3 +63,4 @@ with pool.connect() as db_conn:
   # show results
   for row in results:
     print(row)
+
