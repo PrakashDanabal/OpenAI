@@ -1,4 +1,4 @@
-from google.colab import auth
+
 from google.cloud.sql.connector import Connector
 import sqlalchemy
 from sqlalchemy import Column, Float, Integer, String, Table
