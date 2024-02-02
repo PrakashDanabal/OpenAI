@@ -31,7 +31,7 @@ def create_app():
 
     # Flask-SQLAlchemy settings
     # app.config['SQLALCHEMY_DATABASE_URI']= "mssql://sa:10231993@localhost:49993/MData_PMO?driver=SQL+Server+Native+Client+11.0"  # File-based SQL database
-    app.config['SQLALCHEMY_DATABASE_URI']= getconn()
+    app.config['SQLALCHEMY_DATABASE_URI']="mssql+pytds://"+ getconn()
     # app.config['SQLALCHEMY_BINDS'] = {
     #     'random': "mssql://sqlserver:10231993@localhost:49993/MData_PMO?driver=SQL+Server+Native+Client+11.0"
     # }
