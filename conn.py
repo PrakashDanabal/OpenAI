@@ -23,6 +23,7 @@ def getconn():
     return conn
 
 # create connection pool with 'creator' argument to our connection object function
+# print(getconn.render_as_string())
 pool = sqlalchemy.create_engine("mssql+pytds://",creator=getconn,)
 
 
