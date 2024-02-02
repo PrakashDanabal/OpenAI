@@ -17,7 +17,7 @@ INSTANCE_NAME = "adding-and-q-281-6357138b:us-central1:flaskdb"
 
 
 app.config[
-    "SQLALCHEMY_DATABASE_URI"] = f"mssql+pytds://sadmin:{PASSWORD}@{PUBLIC_IP_ADDRESS}/{DBNAME}?unix_socket =/cloudsql/{PROJECT_ID}:{INSTANCE_NAME}"
+    "SQLALCHEMY_DATABASE_URI"] = f"mssql+pyodbc://sadmin:{PASSWORD}@{PUBLIC_IP_ADDRESS}/{DBNAME}?unix_socket =/cloudsql/{PROJECT_ID}:{INSTANCE_NAME}"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 
 db = SQLAlchemy(app)
