@@ -6,6 +6,7 @@ from google.cloud.sql.connector import Connector
 #there is no hope
 ### hope it works
 db = SQLAlchemy()
+connector = Connector()
 
 INSTANCE_CONNECTION_NAME='adding-and-q-281-800e631e:us-central1:flaskdb'
 DB_USER='sqlserver'
