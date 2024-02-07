@@ -7,10 +7,10 @@ app = Flask(__name__)
 
 # Google Cloud SQL (change this accordingly)
 PASSWORD = "10231993"
-PUBLIC_IP_ADDRESS = "34.133.186.200"
+PUBLIC_IP_ADDRESS = "34.42.62.12"
 DBNAME = "mdata"
-PROJECT_ID = "adding-and-q-281-6357138b"
-INSTANCE_NAME = "adding-and-q-281-6357138b:us-central1:flaskdb"
+PROJECT_ID = "adding-and-q-281-61174c4e"
+INSTANCE_NAME = "adding-and-q-281-61174c4e:us-central1:flaskdb"
 
 # configuration
 # app.config["SECRET_KEY"] = "yoursecretkey"
